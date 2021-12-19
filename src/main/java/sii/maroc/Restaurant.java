@@ -1,25 +1,57 @@
 package sii.maroc;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Restaurant {
 
-	public Restaurant(String string, String string2, String string3, String string4) {
-		// TODO Auto-generated constructor stub
-	}
+		private Map<String,Integer> stock;
 
-	public Restaurant(String string, String string2, String string3, String string4, String string5, String string6) {
-		// TODO Auto-generated constructor stub
-	}
+	public Restaurant(String ... products) {
+		//initialisation du stock
+		stock = new HashMap<>();
 
-	public Ticket order(String string) {
+		for(String product:products){
+			//verifier si le produit est quatifiable
+			if(!isQuatifiable(product)){
+				stock.put(product,-1);
+			}else{
+				addProduct(product);
+				}
+			}
+		}
+
+
+
+	public Ticket order(String order) {
 		// TODO Auto-generated method stub
+		Ticket ticket = new Ticket(order);
+
+
 		return null;
 	}
 
 	public Meal retrieve(Ticket ticket) {
 		// TODO Auto-generated method stub
-		return null;
+		Meal meal = new Meal(ticket);
+
+		return meal;
 	}
 
+	public boolean isQuatifiable(String s){
+		return Character.isDigit(s.trim().charAt(0));
+	}
+
+	public void addProduct(String product){
+		String[] productParts = product.trim().split(" ",1);
+		int qte = Integer.parseInt(productParts[0]);
+		String productName = productParts[1];
+		if(this.stock.containsKey(productName)){
+			this.stock.put(productName,qte + this.stock.get(productName));
+		}else{
+			this.stock.put(productName,qte);
+		}
+	}
 
 	
 }
