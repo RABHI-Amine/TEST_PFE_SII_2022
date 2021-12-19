@@ -28,8 +28,8 @@ public class Ticket {
 	}
 
 	public void addOrder(String orderElem) {
-		int qte = Integer.parseInt(orderElem.trim().split(" ", 1)[0]);
-		String name = orderElem.trim().split(" ", 1)[1];
+		int qte = Integer.parseInt(orderElem.trim().split(" ", 2)[0]);
+		String name = orderElem.trim().split(" ", 2)[1];
 		Plate plate = new Plate(name);
 		plates.put(plate,qte);
 	}

@@ -43,7 +43,7 @@ public class Restaurant {
 	}
 
 	public void addProduct(String product){
-		String[] productParts = product.trim().split(" ",1);
+		String[] productParts = product.trim().split(" ",2);
 		int qte = Integer.parseInt(productParts[0]);
 		String productName = productParts[1];
 		if(this.stock.containsKey(productName)){
